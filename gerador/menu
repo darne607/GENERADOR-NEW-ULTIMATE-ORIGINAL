@@ -76,16 +76,16 @@ local retorno
 declare -A texto
 SCPidioma="${SCPdir}/idioma"
 [[ ! -e ${SCPidioma} ]] && touch ${SCPidioma}
-local LINGUAGE=$(cat ${SCPidioma})
-[[ -z $LINGUAGE ]] && LINGUAGE=pt
-[[ $LINGUAGE = "pt" ]] && echo "$@" && return
-[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://www.dropbox.com/s/l6iqf5xjtjmpdx5/trans?dl=0 &> /dev/null
+local LANGUAGE=$(cat ${SCPidioma})
+[[ -z $LANGUAGE ]] && LANGUAGE=pt
+[[ $LANGUAGE = "pt" ]] && echo "$@" && return
+[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://www.dropbox.com/s/g0k3tgjwdy6h9rg/trans?dl=0 &> /dev/null
 [[ ! -e /etc/texto-adm ]] && touch /etc/texto-adm
 source /etc/texto-adm
 if [[ -z "$(echo ${texto[$@]})" ]]; then
 #ENGINES=(aspell google deepl bing spell hunspell apertium yandex)
 #NUM="$(($RANDOM%${#ENGINES[@]}))"
-retorno="$(source trans -e bing -b pt:${LINGUAGE} "$@"|sed -e 's/[^a-z0-9 -]//ig' 2>/dev/null)"
+retorno="$(source trans -e bing -b pt:${LANGUAGE} "$@"|sed -e 's/[^a-z0-9 -]//ig' 2>/dev/null)"
 echo "texto[$@]='$retorno'"  >> /etc/texto-adm
 echo "$retorno"
 else
@@ -105,10 +105,10 @@ tput cuu1 && tput dl1
 done
 if [[ $Key = @(s|S|y|Y) ]]; then
 msg -verm "$(fun_trans "Perfeito Iniciando Procedimento"): "
-wget -O $HOME/instalar.sh https://www.dropbox.com/s/s4k7ovuimvkr3zf/instalar.sh &>/dev/null
+wget -O $HOME/instalar.sh https://www.dropbox.com/s/ycsrot1fujbo8a3/instalar.sh &>/dev/null
 chmod +x $HOME/instalar.s*
-local LINGUAGE=$(cat ${SCPidioma})
-$HOME/instalar.sh "${LINGUAGE}"
+local LANGUAGE=$(cat ${SCPidioma})
+$HOME/instalar.sh "${LANGUAGE}"
 else
 msg -verm "$(fun_trans "Procedimento Cancelado"): "
 msg -bar2
