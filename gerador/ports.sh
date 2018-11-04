@@ -145,7 +145,7 @@ echo -e "${varline}" >> ${CONF}
  for NPT in $(echo ${newports}); do
  sed -i "s/VAR/-p ${NPT} VAR/g" ${CONF}
  done
- sed -i "s/VAR//g" ${CONF}
+ sed -i "s/VAR/g" ${CONF}
  fi
 done <<< "${NEWCONF}"
 msg -azu "$(fun_trans "AGUARDE")"
