@@ -38,7 +38,7 @@ echo -e "$barra"
   done
 if [[ "$fail2ban" = @(s|S|y|Y) ]]; then
 apt-get install fail2ban -y &> /dev/null
-wget -O $HOME/fail2ban https://www.dropbox.com/s/cpxzdkik1nmlp4s/fail2ban-0.9.4.tar.gz?dl=0 &> /dev/null
+wget -O $HOME/fail2ban https://www.dropbox.com/s/cpxzdkik1nmlp4s/fail2ban-0.9.4.tar.gz &> /dev/null
 tar -xf $HOME/fail2ban &> /dev/null
 cd $HOME/fail2ban-0.9.4 &> /dev/null
 python ./setup.py install &> /dev/null
